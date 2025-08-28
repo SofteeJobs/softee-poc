@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Softee Jobs — Proof of Concept</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>🧩 Softee Jobs — Skill-Matched Board (POC)</h1>
+    <p class="muted">This POC matches applicants to jobs by specific software experience and includes a simple quiz placeholder.</p>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>🎯 Required Skill</h2>
+      <div class="required-skill">
+        <label for="requiredSkill">Hard-coded skill for this POC:</label>
+        <input id="requiredSkill" value="QuickBooks" readonly />
+        <small>Change this in <code>app.js</code> → <code>REQUIRED_SKILL</code>.</small>
+      </div>
+
+      <h2>📋 Jobs</h2>
+      <div id="jobList" class="list"></div>
+    </section>
+
+    <section class="card">
+      <h2>👤 Candidates</h2>
+      <div class="filters">
+        <input id="searchInput" placeholder="Search candidate name or skill..." />
+        <button id="btnSearch" type="button">Search</button>
+        <button id="btnReset" type="button">Reset</button>
+      </div>
+
+      <div id="candidateList" class="list"></div>
+    </section>
+  </main>
+
+  <footer class="container muted">
+    <p>POC only. “AI quiz bot” uses a local question set and a mock scorer. Swap with your LLM later in <code>quiz.js</code>.</p>
+  </footer>
+
+  <dialog id="quizModal">
+    <form method="dialog" class="modal">
+      <h3>Skill Quiz: <span id="quizSkill"></span></h3>
+      <div id="quizContent"></div>
+      <menu>
+        <button value="cancel">Cancel</button>
+        <button id="submitQuiz" value="default">Submit</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

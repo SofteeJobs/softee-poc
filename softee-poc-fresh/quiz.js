@@ -1,0 +1,6 @@
+const QUESTION_BANK={QuickBooks:[{q:"Which QuickBooks feature matches bank transactions automatically?",options:["Reconcile","Bank Rules","Chart of Accounts"],answer:1}]};
+const quizModal=document.getElementById("quizModal");const quizSkillEl=document.getElementById("quizSkill");const quizContent=document.getElementById("quizContent");const submitBtn=document.getElementById("submitQuiz");
+function buildQuiz(skill){const qs=QUESTION_BANK[skill]||[];quizContent.innerHTML=qs.map((it,i)=>`<div><h4>${i+1}. ${it.q}</h4>${it.options.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}" required/>${o}</label>`).join("")}</div>`).join("");return qs.length}
+function scoreQuiz(skill){const qs=QUESTION_BANK[skill]||[];let c=0;qs.forEach((it,i)=>{const s=document.querySelector(`input[name="q${i}"]:checked`);if(s&&parseInt(s.value)==it.answer)c++});return{c,total:qs.length}}
+submitBtn.addEventListener("click",()=>{const s=quizSkillEl.textContent;const{c,total}=scoreQuiz(s);alert(c/total>=0.7?`✅ Passed ${c}/${total}`:`❌ Failed ${c}/${total}`);if(window.applyVerification)window.applyVerification(c,total)});
+window.openQuiz=skill=>{quizSkillEl.textContent=skill;buildQuiz(skill);quizModal.showModal();};
